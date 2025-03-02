@@ -11,13 +11,13 @@ defmodule NavMenu do
           <.link href="/" class="">Home</.link>
         </div>
         <div>
-          <.link href="/" class="">Home</.link>
+          <.link href="/" class="">Command Central</.link>
         </div>
         <div>
-          <.link href="/" class="">Home</.link>
+          <.link href="/" class="">Leaderboard</.link>
         </div>
         <div>
-          <.link href="/" class="">Home</.link>
+          <.link href="/" class="">Participants</.link>
         </div>
       </nav>
     </div>
