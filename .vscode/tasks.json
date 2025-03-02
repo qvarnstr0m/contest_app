@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start Phoenix Server",
+        "type": "shell",
+        "command": "mix phx.server",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "detail": "Starts the Phoenix web server"
+      }
+    ]
+  }
+  
