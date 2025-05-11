@@ -1,0 +1,27 @@
+<div class="flex justify-around w-full h-full">
+  <div class="bg-black bg-opacity-50 md:w-2/3 custom-border p-2">
+    <h1 class="text-xl text-customLightBlue">Welcome!</h1>
+
+    <div class="text-md text-customLightBlue mb-2">
+      It is the year 2054... <br /><br />
+      You are trying to connect from {@ip}, please register your name.
+    </div>
+
+    <%= if @feedback do %>
+      <div class="custom-border p-2 text-red-400">{@feedback}</div>
+    <% end %>
+
+    <.form for={@form} phx-submit="register">
+      <label class="block text-sm font-bold mb-2 text-customLightBlue">Name</label>
+      <input
+        type="text"
+        name="participant[name]"
+        class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-customDarkBlue"
+      />
+
+      <button class="mt-4 bg-gradient-to-l hover:bg-gradient-to-r from-purple-500 to-pink-500 p-2 font-bold rounded text-customBlack">
+        Register
+      </button>
+    </.form>
+  </div>
+</div>
