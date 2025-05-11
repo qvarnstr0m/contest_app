@@ -4,8 +4,8 @@ defmodule ContestAppWeb.HomeLive.Index do
   def mount(_params, _session, socket) do
     ip =
       case get_connect_info(socket, :peer_data) do
-        %{address: address} -> :inet.ntoa(address) |> to_string()
-        _ -> "unknown"
+        %{address: ip_address} -> :inet.ntoa(ip_address) |> to_string()
+        _ -> "not_found"
       end
 
     form = to_form(%{"name" => ""}, as: :participant)
