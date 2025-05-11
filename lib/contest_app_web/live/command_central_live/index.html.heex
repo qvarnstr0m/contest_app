@@ -1,0 +1,65 @@
+<h1 class="text-2xl text-customLightBlue mb-4">Command Central</h1>
+
+<%= if @participant do %>
+  <div class="lg:flex flex-row">
+    <!-- Next Test -->
+    <div class="lg:w-1/3 lg:mr-3 bg-black bg-opacity-50 custom-border p-4 self-start text-customLightBlue">
+      <h2 class="text-xl mb-2">Next test</h2>
+      <%= if @next_test do %>
+        <div class="inline-block font-semibold">Name</div>
+        <div class="mb-4">{@next_test.name}</div>
+        <div class="inline-block font-semibold">Endpoint</div>
+        <div class="mb-4">{@next_test.endpoint}</div>
+        <div class="inline-block font-semibold">Request method</div>
+        <div class="mb-4">{@next_test.method}</div>
+        <div class="inline-block font-semibold">Level</div>
+        <div class="mb-4">{@next_test.level}</div>
+        <div class="inline-block font-semibold">Description</div>
+        <div class="mb-4">{@next_test.description}</div>
+        <div class="inline-block font-semibold">Expected result</div>
+        <div>{@next_test.expected_result}</div>
+      <% else %>
+        <p>Found no tests to run.</p>
+      <% end %>
+    </div>
+    
+<!-- Latest Test Result -->
+    <div class="lg:w-1/3 lg:mx-3 bg-black bg-opacity-50 custom-border p-4 self-start text-customLightBlue">
+      <h2 class="text-xl mb-2">Latest test result</h2>
+      <%= if @latest_test do %>
+        <div class="inline-block font-semibold">Test Name</div>
+        <div class="mb-4">{@latest_test.test_name}</div>
+        <div class="inline-block font-semibold">Status</div>
+        <div class="mb-4">{if @latest_test.is_success, do: "Passed", else: "Failed"}</div>
+        <div class="inline-block font-semibold">Message</div>
+        <div class="mb-4">{@latest_test.message}</div>
+        <div class="inline-block font-semibold">Level</div>
+        <div class="mb-4">{@latest_test.test_level}</div>
+      <% else %>
+        <p>Found no completed tests.</p>
+      <% end %>
+    </div>
+    
+<!-- Passed Tests -->
+    <div class="lg:w-1/3 lg:ml-3 bg-black bg-opacity-50 custom-border p-4 self-start text-customLightBlue">
+      <h2 class="text-xl mb-2">Passing tests</h2>
+      <%= if Enum.any?(@passed_tests) do %>
+        <%= for {test, i} <- Enum.with_index(Enum.reverse(@passed_tests)) do %>
+          <div class="inline-block font-semibold mt-4">Test Name</div>
+          <div class="mb-4">{test.test_name}</div>
+          <div class="inline-block font-semibold">Message</div>
+          <div class="mb-4">{test.message}</div>
+          <div class="inline-block font-semibold">Level</div>
+          <div class="mb-4">{test.test_level}</div>
+          <%= unless i == length(@passed_tests) - 1 do %>
+            <div class="border-b border-zinc-700 my-4"></div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p>You have no passing tests.</p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <p class="text-red-500">This is a restricted area, register to get access!</p>
+<% end %>

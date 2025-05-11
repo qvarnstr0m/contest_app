@@ -20,4 +20,8 @@ defmodule ContestApp.Participants do
       |> Repo.insert()
     end
   end
+
+  def get_by_api_url(api_url) do
+    Repo.get_by(Participant, api_url: api_url)
+  end
 end

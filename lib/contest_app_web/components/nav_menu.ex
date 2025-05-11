@@ -8,16 +8,16 @@ defmodule NavMenu do
     <div class="flex flex-col justify-center items-center md:px-20">
       <nav class="flex flex-row justify-between py-10 w-full">
         <div>
-          <.link href="/" class="">Home</.link>
+          <.link href="/" class="text-xl hover:blur-[2px]">Home</.link>
         </div>
         <div>
-          <.link href="/" class="">Command Central</.link>
+          <.link href="/" class="text-xl hover:blur-[2px]">Command Central</.link>
         </div>
         <div>
-          <.link href="/" class="">Leaderboard</.link>
+          <.link href="/" class="text-xl hover:blur-[2px]">Leaderboard</.link>
         </div>
         <div>
-          <.link href="/" class="">Participants</.link>
+          <.link href="/" class="text-xl hover:blur-[2px]">Participants</.link>
         </div>
       </nav>
     </div>
