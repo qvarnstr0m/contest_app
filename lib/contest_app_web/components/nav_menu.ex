@@ -11,7 +11,7 @@ defmodule NavMenu do
           <.link href="/" class="text-xl hover:blur-[2px]">Home</.link>
         </div>
         <div>
-          <.link href="/" class="text-xl hover:blur-[2px]">Command Central</.link>
+          <.link href="/command-central" class="text-xl hover:blur-[2px]">Command Central</.link>
         </div>
         <div>
           <.link href="/" class="text-xl hover:blur-[2px]">Leaderboard</.link>
