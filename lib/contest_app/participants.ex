@@ -24,4 +24,8 @@ defmodule ContestApp.Participants do
   def get_by_api_url(api_url) do
     Repo.get_by(Participant, api_url: api_url)
   end
+
+  def list_all do
+    Repo.all(Participant)
+  end
 end

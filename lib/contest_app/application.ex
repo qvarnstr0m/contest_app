@@ -17,7 +17,8 @@ defmodule ContestApp.Application do
       # Start a worker by calling: ContestApp.Worker.start_link(arg)
       # {ContestApp.Worker, arg},
       # Start to serve requests, typically the last entry
-      ContestAppWeb.Endpoint
+      ContestAppWeb.Endpoint,
+      ContestApp.TestRunner
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
