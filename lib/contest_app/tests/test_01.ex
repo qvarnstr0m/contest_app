@@ -14,14 +14,14 @@ defmodule ContestApp.Tests.Test01 do
   def level, do: 1
 
   @impl true
-  def description,
-    do:
-      "After providing your name, the prompt flickers and shifts, unveiling a " +
-        "new message on the screen. Initial contact. It appears the system is now " +
-        "awaiting your next move, prompting you to establish an endpoint for the " +
-        "GET request. You need to set up an endpoint that responds with a 200 Ok." +
-        "You get a strange feeling that your progress may be dependent on 'ReadMe', " +
-        "whatever that could mean..."
+  def description do
+    """
+    After providing your name, the prompt flickers and shifts, unveiling a new message on the screen.
+    Initial contact. It appears the system is now awaiting your next move, prompting you to establish
+    an endpoint for the GET request. You need to set up an endpoint that responds with a 200 Ok.
+    You get a strange feeling that your progress may be dependent on 'ReadMe', whatever that could mean...
+    """
+  end
 
   @impl true
   def expected_result, do: "200 OK"
@@ -29,8 +29,9 @@ defmodule ContestApp.Tests.Test01 do
   @impl true
   def run_test(api_url, participant_id) do
     url = api_url <> endpoint()
+    request = Req.new(retry: false, url: url)
 
-    case Req.get(url, receive_timeout: 500) do
+    case Req.get(request) do
       {:ok, %{status: 200}} ->
         {:ok,
          %{

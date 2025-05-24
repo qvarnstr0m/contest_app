@@ -27,7 +27,7 @@ defmodule ContestAppWeb.HomeLive.Index do
         socket =
           socket
           |> put_flash(:info, "You are now registered! Redirecting...")
-          |> push_redirect(to: "/command-central")
+          |> push_navigate(to: "/command-central")
 
         {:noreply, socket}
 

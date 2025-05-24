@@ -18,6 +18,14 @@ defmodule ContestApp.Participants do
         highest_level_timestamp: DateTime.utc_now()
       })
       |> Repo.insert()
+      |> case do
+        {:ok, participant} ->
+          ContestApp.ParticipantSupervisor.start_participant(participant)
+          {:ok, participant}
+
+        error ->
+          error
+      end
     end
   end
 

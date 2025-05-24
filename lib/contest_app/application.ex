@@ -18,13 +18,18 @@ defmodule ContestApp.Application do
       # {ContestApp.Worker, arg},
       # Start to serve requests, typically the last entry
       ContestAppWeb.Endpoint,
-      ContestApp.TestRunner
+      {Registry, keys: :unique, name: ContestApp.ParticipantRegistry},
+      ContestApp.ParticipantSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ContestApp.Supervisor]
-    Supervisor.start_link(children, opts)
+    result = Supervisor.start_link(children, opts)
+
+    # Call function to start genservers for existing participants
+    ContestApp.ParticipantSupervisor.start_existing_participants()
+    result
   end
 
   # Tell Phoenix to update the endpoint configuration

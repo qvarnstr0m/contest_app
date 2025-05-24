@@ -4,7 +4,7 @@ defmodule ContestApp.Pages do
   """
 
   import Ecto.Query, warn: false
-  alias ContestApp.Repo
+  # alias ContestApp.Repo
 
-  alias ContestApp.Pages.CommandCentral
+  # alias ContestApp.Pages.CommandCentral
 end
