@@ -13,7 +13,6 @@ defmodule ContestApp.ParticipantGenServer do
   defp via_tuple(id), do: {:via, Registry, {ContestApp.ParticipantRegistry, id}}
 
   # GenServer Callbacks
-
   @impl true
   def init(participant) do
     schedule_test()
@@ -81,7 +80,9 @@ defmodule ContestApp.ParticipantGenServer do
           updated = %{
             acc_state
             | participant: updated_participant,
-              passed_tests: [passed_result | acc_state.passed_tests],
+              passed_tests:
+                [passed_result | acc_state.passed_tests]
+                |> Enum.uniq_by(& &1.test_level),
               latest_result: passed_result,
               next_test: nil
           }

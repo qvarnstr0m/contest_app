@@ -8,8 +8,8 @@ defmodule ContestApp.Tests do
   @spec all() :: [test_module()]
   def all do
     [
-      ContestApp.Tests.Test01
-      # Add more later
+      ContestApp.Tests.Test01,
+      ContestApp.Tests.Test02
     ]
   end
 end

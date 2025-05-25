@@ -2,7 +2,7 @@ defmodule ContestApp.Tests.Test01 do
   @behaviour ContestApp.Tests.Test
 
   @impl true
-  def name, do: "initial contact"
+  def name, do: "Initial contact"
 
   @impl true
   def endpoint, do: "/ok"
