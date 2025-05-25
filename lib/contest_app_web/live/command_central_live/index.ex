@@ -11,14 +11,26 @@ defmodule ContestAppWeb.CommandCentralLive.Index do
     api_url = "http://#{ip}:5029"
     participant = ContestApp.Participants.get_by_api_url(api_url)
 
-    {:ok,
-     assign(
-       socket,
-       ip: ip,
-       participant: participant,
-       next_test: nil,
-       latest_test: nil,
-       passed_tests: []
-     )}
+    if participant do
+      state = ContestApp.ParticipantGenServer.get_state(participant.id)
+
+      {:ok,
+       assign(socket,
+         ip: ip,
+         participant: state.participant,
+         next_test: state.next_test,
+         latest_test: state.latest_result,
+         passed_tests: Enum.reverse(state.passed_tests)
+       )}
+    else
+      {:ok,
+       assign(socket,
+         ip: ip,
+         participant: nil,
+         next_test: nil,
+         latest_test: nil,
+         passed_tests: []
+       )}
+    end
   end
 end

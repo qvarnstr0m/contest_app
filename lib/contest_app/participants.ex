@@ -14,7 +14,7 @@ defmodule ContestApp.Participants do
       |> Participant.changeset(%{
         name: name,
         api_url: api_url,
-        current_level: 0,
+        highest_level: 0,
         highest_level_timestamp: DateTime.utc_now()
       })
       |> Repo.insert()
@@ -35,5 +35,15 @@ defmodule ContestApp.Participants do
 
   def list_all do
     Repo.all(Participant)
+  end
+
+  def update_highest_level!(participant, new_level) do
+    changeset =
+      Participant.changeset(participant, %{
+        highest_level: new_level,
+        highest_level_timestamp: DateTime.utc_now()
+      })
+
+    Repo.update!(changeset)
   end
 end
