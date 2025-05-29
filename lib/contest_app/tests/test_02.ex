@@ -32,7 +32,6 @@ defmodule ContestApp.Tests.Test02 do
       Req.new(
         url: url,
         retry: false,
-        # We want to control parsing manually to catch errors
         decode_body: false
       )
 

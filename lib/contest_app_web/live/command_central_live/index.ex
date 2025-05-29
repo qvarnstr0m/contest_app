@@ -14,13 +14,24 @@ defmodule ContestAppWeb.CommandCentralLive.Index do
     if participant do
       state = ContestApp.ParticipantGenServer.get_state(participant.id)
 
+      passed_tests = Enum.reverse(state.passed_tests)
+
+      latest_passed_level =
+        passed_tests
+        |> Enum.map(& &1.test_level)
+        |> Enum.max(fn -> 0 end)
+
+      highest_possible_level = ContestApp.Tests.highest_level()
+      show_final_message = latest_passed_level >= highest_possible_level
+
       {:ok,
        assign(socket,
          ip: ip,
          participant: state.participant,
          next_test: state.next_test,
          latest_test: state.latest_result,
-         passed_tests: Enum.reverse(state.passed_tests)
+         passed_tests: Enum.reverse(state.passed_tests),
+         show_final_message: show_final_message
        )}
     else
       {:ok,
@@ -29,7 +40,8 @@ defmodule ContestAppWeb.CommandCentralLive.Index do
          participant: nil,
          next_test: nil,
          latest_test: nil,
-         passed_tests: []
+         passed_tests: [],
+         show_final_message: false
        )}
     end
   end

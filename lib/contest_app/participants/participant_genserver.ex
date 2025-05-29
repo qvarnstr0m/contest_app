@@ -47,7 +47,10 @@ defmodule ContestApp.ParticipantGenServer do
   defp run_tests_until_fail(state) do
     tests = ContestApp.Tests.all()
 
-    Enum.reduce_while(tests, state, fn test_module, acc_state ->
+    # This aint right but whatever, we need to clear the list of passed_tests
+    fresh_state = %{state | passed_tests: []}
+
+    Enum.reduce_while(tests, fresh_state, fn test_module, acc_state ->
       case test_module.run_test(acc_state.participant.api_url, acc_state.participant.id) do
         {:ok, result} ->
           IO.puts("""

@@ -9,7 +9,14 @@ defmodule ContestApp.Tests do
   def all do
     [
       ContestApp.Tests.Test01,
-      ContestApp.Tests.Test02
+      ContestApp.Tests.Test02,
+      ContestApp.Tests.Test03
     ]
+  end
+
+  def highest_level do
+    all()
+    |> Enum.map(& &1.level())
+    |> Enum.max()
   end
 end

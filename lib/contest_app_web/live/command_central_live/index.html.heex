@@ -4,22 +4,34 @@
   <div class="lg:flex flex-row">
     <!-- Next Test -->
     <div class="lg:w-1/3 lg:mr-3 bg-black bg-opacity-50 custom-border p-4 self-start text-customLightBlue">
-      <h2 class="text-xl mb-2">Next test</h2>
-      <%= if @next_test do %>
-        <div class="inline-block font-semibold">Name</div>
-        <div class="mb-4">{@next_test.name}</div>
-        <div class="inline-block font-semibold">Endpoint</div>
-        <div class="mb-4">{@next_test.endpoint}</div>
-        <div class="inline-block font-semibold">Request method</div>
-        <div class="mb-4">{@next_test.method}</div>
-        <div class="inline-block font-semibold">Level</div>
-        <div class="mb-4">{@next_test.level}</div>
-        <div class="inline-block font-semibold">Description</div>
-        <div class="mb-4">{@next_test.description}</div>
-        <div class="inline-block font-semibold">Expected result</div>
-        <div>{@next_test.expected_result}</div>
+      <%= if @show_final_message do %>
+        <h2 class="text-xl mb-2">Well done!</h2>
+        <p>
+          Congratulations, Developer! You've successfully completed the final task, your mission is done! As the air
+          vehicle safely descends into the alleyway, the doors open, signaling your return to safety. As you
+          are about to enter the aircraft, you look around the alleyway and realize the strange beauty of Nova Cygni,
+          which has become surprisingly familiar. A part of you wonders whether you should stay to uncover more of its
+          secrets. With the engines humming softly in the background, you stand at a crossroads: board the aircraft back
+          to Earth or remain in this enigmatic world to explore the unknown. Who knows what adventures lie ahead...
+        </p>
       <% else %>
-        <p>Found no tests to run.</p>
+        <h2 class="text-xl mb-2">Next test</h2>
+        <%= if @next_test do %>
+          <div class="inline-block font-semibold">Name</div>
+          <div class="mb-4">{@next_test.name}</div>
+          <div class="inline-block font-semibold">Endpoint</div>
+          <div class="mb-4">{@next_test.endpoint}</div>
+          <div class="inline-block font-semibold">Request method</div>
+          <div class="mb-4">{@next_test.method}</div>
+          <div class="inline-block font-semibold">Level</div>
+          <div class="mb-4">{@next_test.level}</div>
+          <div class="inline-block font-semibold">Description</div>
+          <div class="mb-4">{@next_test.description}</div>
+          <div class="inline-block font-semibold">Expected result</div>
+          <div>{@next_test.expected_result}</div>
+        <% else %>
+          <p>Found no tests to run.</p>
+        <% end %>
       <% end %>
     </div>
     
