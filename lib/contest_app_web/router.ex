@@ -19,6 +19,8 @@ defmodule ContestAppWeb.Router do
 
     live "/", HomeLive.Index, :index
     live "/command-central", CommandCentralLive.Index, :index
+    live "/leaderboard", LeaderboardLive.Index, :index
+    get "/readme", ReadmeController, :show
   end
 
   # Other scopes may use custom stacks.

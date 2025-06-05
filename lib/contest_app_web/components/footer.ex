@@ -16,9 +16,6 @@ defmodule Footer do
           v{Application.spec(:phoenix, :vsn)}
         </a>
       </p>
-      <div>
-        <.link href="/readme" class="ms-2 underline hover:no-underline">ReadMe</.link>
-      </div>
     </div>
     """
   end

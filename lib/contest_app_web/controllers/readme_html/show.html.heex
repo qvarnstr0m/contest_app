@@ -1,0 +1,74 @@
+<div class="flex justify-around w-100 h-100">
+  <div class="bg-black bg-opacity-50 md:w-2/3 custom-border p-2">
+    <h1 class="text-xl text-customLightBlue">Glad you made it here!</h1>
+
+    <div class="text-md text-customLightBlue mb-4 mt-2">
+      As you probably know, readme's and documentation are a developer's best friend.
+    </div>
+
+    <h2 class="text-lg text-customLightBlue">Setup Instructions</h2>
+    <ul class="list-disc pl-5 mb-4">
+      <li class="mt-2">
+        <strong>Setting up your API</strong>
+        – You are expected to set up a Web API with endpoints that will handle the various challenges. The challenges follow the Nova Cygni storyline and your goal is to reach the final stage and get safely back to earth.
+      </li>
+      <li class="mt-2">
+        <strong>Configure the Local Network Access</strong>
+        – To ensure that the application is accessible on your local network, configure the application to start on <code>http://0.0.0.0:5029</code>. This setting allows other devices on your network to access the app through your machine's IP address at the specified port. Interested in why?
+        <.link
+          href="https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost"
+          class="text-customLightBlue hover:underline text-md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here.
+        </.link>
+      </li>
+      <li class="mt-2">
+        <strong>Check Firewall Settings</strong>
+        – If the tester is having trouble connecting to you, ensure that your firewall settings allow traffic on the port used by the app (5029 by default) to prevent any connectivity issues.
+      </li>
+    </ul>
+
+    <h2 class="text-lg text-customLightBlue">Random hints and tips</h2>
+    <p class="text-md text-customLightBlue mb-2">
+      Here are some tips and tricks to help you on your way back to earth:
+    </p>
+
+    <ul class="list-disc pl-5 mb-4">
+      <li class="mt-2">
+        <strong>The Rules</strong>
+        – The winner is the one who either reaches the goal first, or the one with the highest level reached when the time is up. If there are more than one contestant on the same level, the one who reached it first ranks higher.
+      </li>
+      <li class="mt-2">
+        <strong>The Testing Process</strong>
+        – The tester will be running the series of challenges continuously, so if you shut down or reset your application, your Command Central data will be reset to test one, but don’t worry — your highscore will never downgrade. If you want to keep the status on the Command Central screen while you work on the next challenge, just keep your app running.
+      </li>
+      <li class="mt-2">
+        <strong>Use Developer Tools</strong>
+        – Utilize the browser’s developer tools and your IDE to monitor network requests, view console logs, and debug issues as you interact with the application.
+      </li>
+      <li class="mt-2">
+        <strong>The Command Central Page</strong>
+        – This is where the action happens. Here you get instructions and results for each challenge.
+      </li>
+      <li class="mt-2">
+        <strong>The Leaderboard and Participants Pages</strong>
+        – Keep an eye on these pages to track your progress and compare your performance against others.
+      </li>
+      <li class="mt-2">
+        <strong>Transmissions</strong>
+        – You will be working with some sort of object called Transmission; `Id` (int), `SignalCode` (string), `Message` (string). You may find it useful to treat it as one — an object, that is. You may also find it useful, or even necessary, to add some more properties to it at some point.
+      </li>
+      <li class="mt-2">
+        <strong>The Setup Process</strong>
+        – If you are using .NET, the file to set the <code>applicationUrl</code>
+        is <code>launchSettings.json</code>.
+      </li>
+    </ul>
+
+    <p class="text-xl text-customLightBlue">
+      Good luck on your journey back home!
+    </p>
+  </div>
+</div>

@@ -23,6 +23,32 @@ defmodule SamplePhoenix.SampleController do
   def fav(conn, _) do
     send_resp(conn, 200, "Hello, World!")
   end
+
+  def get_transmission(conn, _params) do
+    transmission = %{
+      id: 1
+    }
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(200, Jason.encode!(transmission))
+  end
+
+  def post_transmission(conn, %{
+        "id" => id,
+        "signal_code" => signal_code,
+        "message" => message
+      }) do
+    transmission = %{
+      id: id,
+      signal_code: signal_code,
+      message: message
+    }
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(201, Jason.encode!(transmission))
+  end
 end
 
 defmodule Router do
@@ -30,12 +56,21 @@ defmodule Router do
 
   pipeline :api do
     plug(:accepts, ["json"])
+
+    plug Plug.Parsers,
+      parsers: [:json],
+      pass: ["application/json"],
+      json_decoder: Jason
   end
 
   scope "/", SamplePhoenix do
     pipe_through(:api)
 
     get("/ok", SampleController, :ok)
+
+    # get("/transmissions", SampleController, :get_transmission)
+
+    # post("/transmissions", SampleController, :post_transmission)
 
     # Prevent a horrible error because ErrorView is missing
     get("/favicon.ico", SampleController, :fav)

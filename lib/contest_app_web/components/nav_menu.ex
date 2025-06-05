@@ -14,10 +14,10 @@ defmodule NavMenu do
           <.link href="/command-central" class="text-xl hover:blur-[2px]">Command Central</.link>
         </div>
         <div>
-          <.link href="/" class="text-xl hover:blur-[2px]">Leaderboard</.link>
+          <.link href="/leaderboard" class="text-xl hover:blur-[2px]">Leaderboard</.link>
         </div>
         <div>
-          <.link href="/" class="text-xl hover:blur-[2px]">Participants</.link>
+          <.link href="/readme" class="text-xl hover:blur-[2px]">ReadMe</.link>
         </div>
       </nav>
     </div>

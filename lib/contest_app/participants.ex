@@ -41,7 +41,7 @@ defmodule ContestApp.Participants do
     changeset =
       Participant.changeset(participant, %{
         highest_level: new_level,
-        highest_level_timestamp: DateTime.utc_now()
+        highest_level_timestamp: DateTime.now("Europe/Stockholm")
       })
 
     Repo.update!(changeset)

@@ -24,6 +24,14 @@ defmodule ContestApp.ParticipantGenServer do
     )
   end
 
+  defp broadcast_leaderboard_update(participant_id) do
+    Phoenix.PubSub.broadcast(
+      ContestApp.PubSub,
+      "participants:leaderboard",
+      {:leaderboard_update, %{id: participant_id}}
+    )
+  end
+
   # GenServer Callbacks
   @impl true
   def init(participant) do
@@ -62,8 +70,6 @@ defmodule ContestApp.ParticipantGenServer do
     fresh_state = %{state | passed_tests: []}
 
     Enum.reduce_while(tests, fresh_state, fn test_module, acc_state ->
-      IO.puts("Running test: #{inspect(test_module)}")
-
       case test_module.run_test(acc_state.participant.api_url, acc_state.participant.id) do
         {:ok, result} ->
           IO.puts("""
@@ -92,6 +98,10 @@ defmodule ContestApp.ParticipantGenServer do
             else
               acc_state.participant
             end
+
+          if test_module.level() > acc_state.participant.highest_level do
+            broadcast_leaderboard_update(acc_state.participant.id)
+          end
 
           updated = %{
             acc_state
