@@ -28,6 +28,7 @@ defmodule ContestApp.Tests.Test01 do
 
   @impl true
   def run_test(api_url, participant_id) do
+    IO.inspect(api_url)
     url = api_url <> endpoint()
     request = Req.new(retry: false, url: url)
 
