@@ -6,11 +6,23 @@ defmodule ContestApp.ParticipantGenServer do
     GenServer.start_link(__MODULE__, participant, name: via_tuple(participant.id))
   end
 
+  def subscribe(participant_id) do
+    Phoenix.PubSub.subscribe(ContestApp.PubSub, "participant:#{participant_id}")
+  end
+
   def get_state(participant_id) do
     GenServer.call(via_tuple(participant_id), :get_state)
   end
 
   defp via_tuple(id), do: {:via, Registry, {ContestApp.ParticipantRegistry, id}}
+
+  defp broadcast(state) do
+    Phoenix.PubSub.broadcast(
+      ContestApp.PubSub,
+      "participant:#{state.participant.id}",
+      {:state, state}
+    )
+  end
 
   # GenServer Callbacks
   @impl true
@@ -47,10 +59,11 @@ defmodule ContestApp.ParticipantGenServer do
   defp run_tests_until_fail(state) do
     tests = ContestApp.Tests.all()
 
-    # This aint right but whatever, we need to clear the list of passed_tests
     fresh_state = %{state | passed_tests: []}
 
     Enum.reduce_while(tests, fresh_state, fn test_module, acc_state ->
+      IO.puts("Running test: #{inspect(test_module)}")
+
       case test_module.run_test(acc_state.participant.api_url, acc_state.participant.id) do
         {:ok, result} ->
           IO.puts("""
@@ -83,12 +96,12 @@ defmodule ContestApp.ParticipantGenServer do
           updated = %{
             acc_state
             | participant: updated_participant,
-              passed_tests:
-                [passed_result | acc_state.passed_tests]
-                |> Enum.uniq_by(& &1.test_level),
+              passed_tests: [passed_result | acc_state.passed_tests],
               latest_result: passed_result,
               next_test: nil
           }
+
+          broadcast(updated)
 
           {:cont, updated}
 
@@ -120,6 +133,8 @@ defmodule ContestApp.ParticipantGenServer do
                 method: test_module.http_method()
               }
           }
+
+          broadcast(updated)
 
           {:halt, updated}
       end
