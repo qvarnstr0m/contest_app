@@ -15,11 +15,13 @@ defmodule ContestApp.Tests.Test01 do
 
   @impl true
   def description do
-    """
-    After providing your name, the prompt flickers and shifts, unveiling a new message on the screen.
-    Initial contact. It appears the system is now awaiting your next move, prompting you to establish
-    an endpoint for the GET request. You need to set up an endpoint that responds with a 200 Ok.
-    You get a strange feeling that your progress may be dependent on 'ReadMe', whatever that could mean...
+    ~S"""
+    The terminal buzzes satisfyingly. A new prompt pulses:
+    **INITIAL CONTACT ESTABLISHED**
+
+    Something—someone—is out there, listening. You're being asked to respond, to prove you're alive on this frequency. Your system must expose a `GET /ok` endpoint that responds with a simple `200 OK`.
+
+    A whispered hunch drifts in: *"Check the ReadMe. It might be acually be useful..."*
     """
   end
 

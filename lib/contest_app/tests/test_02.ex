@@ -15,9 +15,14 @@ defmodule ContestApp.Tests.Test02 do
 
   @impl true
   def description do
-    """
-    You made contact with earth! The journey continues. It seems something is trying to get something from
-    you, but you are not sure what. For now maybe anything in the ancient JSON format will do?
+    ~S"""
+    The terminal stutters, then locks into rhythm. A new message pulses onto the screen:
+    “Data expected. Format: JSON.”
+
+    You suspect the transmission isn’t from a machine — but from something or someone still trying to maintain order out here.
+
+    Implement a `GET /transmissions` endpoint that responds with a valid `200 OK` and a JSON payload.
+    The contents? Irrelevant — for now. The format? Sacred. Ancient. Required.
     """
   end
 

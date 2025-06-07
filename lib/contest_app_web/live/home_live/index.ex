@@ -14,7 +14,9 @@ defmodule ContestAppWeb.HomeLive.Index do
      assign(socket,
        ip: ip,
        form: form,
-       feedback: nil
+       feedback: nil,
+       registered: false,
+       redirect_in: nil
      )}
   end
 
@@ -26,13 +28,25 @@ defmodule ContestAppWeb.HomeLive.Index do
       {:ok, _participant} ->
         socket =
           socket
-          |> put_flash(:info, "You are now registered! Redirecting...")
-          |> push_navigate(to: "/command-central")
+          |> assign(:registered, true)
+          |> assign(:redirect_in, 10)
+
+        Process.send_after(self(), :countdown_tick, 1000)
 
         {:noreply, socket}
 
       {:error, msg} ->
         {:noreply, assign(socket, feedback: msg)}
     end
+  end
+
+  def handle_info(:countdown_tick, %{assigns: %{redirect_in: 1}} = socket) do
+    {:noreply, push_navigate(socket, to: "/command-central")}
+  end
+
+  def handle_info(:countdown_tick, %{assigns: %{redirect_in: n}} = socket)
+      when is_integer(n) and n > 1 do
+    Process.send_after(self(), :countdown_tick, 1000)
+    {:noreply, assign(socket, :redirect_in, n - 1)}
   end
 end

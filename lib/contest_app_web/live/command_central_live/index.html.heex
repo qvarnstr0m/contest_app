@@ -5,12 +5,20 @@
       <%= if @show_final_message do %>
         <h2 class="text-xl mb-2">Well done!</h2>
         <p>
-          Congratulations, Developer! You've successfully completed the final task, your mission is done! As the air
-          vehicle safely descends into the alleyway, the doors open, signaling your return to safety. As you
-          are about to enter the aircraft, you look around the alleyway and realize the strange beauty of Nova Cygni,
-          which has become surprisingly familiar. A part of you wonders whether you should stay to uncover more of its
-          secrets. With the engines humming softly in the background, you stand at a crossroads: board the aircraft back
-          to Earth or remain in this enigmatic world to explore the unknown. Who knows what adventures lie ahead...
+          <strong>Mission Complete.</strong>
+          <br /><br />
+          You did it, Developer. The final prompt fades, and the interface dissolves into a ripple of light.
+          Overhead, the silent hum of a vertical lifter echoes between the neon-streaked towers — your ride home.<br /><br />
+          As you step toward the open hatch, the rain softens. You glance down the alley one last time:
+          cracked screens still flickering, old drones abandoned mid-task, and the faint glow of terminals
+          waiting to be woken again.<br /><br />
+
+          <em>Nova Cygni — this glitchy, broken place — feels... alive.</em>
+          <br /><br />
+          You could leave now, return to the world you came from. Or stay, dig deeper, and find out what’s still
+          running behind the rusted firewalls.<br /><br />
+
+          <strong>The choice is yours.</strong>
         </p>
       <% else %>
         <h2 class="text-xl mb-2">Next test</h2>
@@ -24,7 +32,7 @@
           <div class="inline-block font-semibold">Level</div>
           <div class="mb-4">{@next_test.level}</div>
           <div class="inline-block font-semibold">Description</div>
-          <div class="mb-4">{@next_test.description}</div>
+          <div class="mb-4">{raw(String.replace(@next_test.description, "\n", "<br />"))}</div>
           <div class="inline-block font-semibold">Expected result</div>
           <div>{@next_test.expected_result}</div>
         <% else %>

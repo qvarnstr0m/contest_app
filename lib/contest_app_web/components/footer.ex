@@ -3,7 +3,7 @@ defmodule Footer do
 
   def footer(assigns) do
     ~H"""
-    <div class="flex flex-row justify-end py-4 md:px-20">
+    <div class="flex flex-row justify-end py-4 md:px-20 mt-10">
       <p>
         <a
           href="https://www.phoenixframework.org/"

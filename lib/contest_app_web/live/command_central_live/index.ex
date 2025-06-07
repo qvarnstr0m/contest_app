@@ -2,6 +2,7 @@ defmodule ContestAppWeb.CommandCentralLive.Index do
   use ContestAppWeb, :live_view
 
   @impl Phoenix.LiveView
+
   def mount(_params, _session, socket) do
     ip =
       case get_connect_info(socket, :peer_data) do
@@ -16,15 +17,7 @@ defmodule ContestAppWeb.CommandCentralLive.Index do
       state = ContestApp.ParticipantGenServer.get_state(participant.id)
       ContestApp.ParticipantGenServer.subscribe(participant.id)
 
-      passed_tests = Enum.reverse(state.passed_tests)
-
-      latest_passed_level =
-        passed_tests
-        |> Enum.map(& &1.test_level)
-        |> Enum.max(fn -> 0 end)
-
-      highest_possible_level = ContestApp.Tests.highest_level()
-      show_final_message = latest_passed_level >= highest_possible_level
+      show_final_message = show_final_message?(Enum.reverse(state.passed_tests))
 
       socket =
         socket
@@ -60,7 +53,16 @@ defmodule ContestAppWeb.CommandCentralLive.Index do
 
   @impl Phoenix.LiveView
   def handle_info({:state, state}, socket) do
-    IO.inspect(state.passed_tests, label: "passed")
-    {:noreply, assign_state(socket, state)}
+    show_final_message = show_final_message?(Enum.reverse(state.passed_tests))
+
+    {:noreply,
+     socket
+     |> assign_state(state)
+     |> assign(show_final_message: show_final_message)}
+  end
+
+  defp show_final_message?(passed_tests) do
+    latest_level = passed_tests |> Enum.map(& &1.test_level) |> Enum.max(fn -> 0 end)
+    latest_level >= ContestApp.Tests.highest_level()
   end
 end

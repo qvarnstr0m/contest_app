@@ -1,27 +1,55 @@
 <div class="flex justify-around w-full h-full">
   <div class="bg-black bg-opacity-50 md:w-2/3 custom-border p-2">
-    <h1 class="text-xl text-customLightBlue">Welcome!</h1>
+    <h1 class="text-xl text-customLightBlue mb-3">Welcome, lost one.</h1>
 
-    <div class="text-md text-customLightBlue mb-2">
-      It is the year 2054... <br /><br />
-      You are trying to connect from {@ip}, please register your name.
+    <div class="text-md text-customLightBlue mb-3">
+      It’s the year 2154. You find yourself in Nova Cygni — a city perched on the far edge of explored space. Neon reflections ripple in rain-soaked streets. Earth is a distant dot in the sky, barely more than a memory.
     </div>
 
-    <%= if @feedback do %>
-      <div class="custom-border p-2 text-red-400">{@feedback}</div>
+    <div class="text-md text-customLightBlue mb-3">
+      You’re not alone. Scattered around you are others like you — once-revered software developers, now disoriented and displaced. No one remembers how they got here. But there’s a shared instinct: you need to get back.
+    </div>
+
+    <div class="text-md text-customLightBlue mb-3">
+      Wandering through the ruins of failed startups and hollowed-out incubators, you pass flickering signs, cracked screens, and vending machines still stocked with expired energy drinks. The city feels like a cautionary tale told in code and rust.
+    </div>
+
+    <div class="text-md text-customLightBlue mb-3">
+      Then, in the shadows of a toppled coworking hub, you stumble upon a box of old laptops — their cases battered, stickers faded into cryptic mosaics of tech logos, open-source symbols, and forgotten dreams. You pick one up. It whirs to life in your hands.
+    </div>
+
+    <div class="text-md text-customLightBlue mb-4">
+      The screen flickers, then stabilizes. A single line appears, glowing softly against the backdrop of rain and static. It reads:
+    </div>
+
+    <div class="custom-border w-max p-2">
+      <div class="text-md text-customLightBlue mb-2">
+        You are trying to connect from {@ip}, please register your name.
+      </div>
+
+      <.form for={@form} phx-submit="register">
+        <input
+          type="text"
+          name="participant[name]"
+          class="bg-black bg-opacity-40 border border-purple-400 rounded w-1/2 py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+        />
+
+        <button class="ms-2 bg-gradient-to-l hover:bg-gradient-to-r from-purple-500 to-pink-500 p-2 font-bold rounded text-customBlack">
+          Register
+        </button>
+      </.form>
+    </div>
+
+    <%= if @registered do %>
+      <div class="custom-border p-2 text-purple-400 mt-2 w-max">
+        ✨ Welcome aboard, <strong><%= @form[:name].value %></strong>! Redirecting in {@redirect_in}...
+      </div>
     <% end %>
 
-    <.form for={@form} phx-submit="register">
-      <label class="block text-sm font-bold mb-2 text-customLightBlue">Name</label>
-      <input
-        type="text"
-        name="participant[name]"
-        class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-customDarkBlue"
-      />
-
-      <button class="mt-4 bg-gradient-to-l hover:bg-gradient-to-r from-purple-500 to-pink-500 p-2 font-bold rounded text-customBlack">
-        Register
-      </button>
-    </.form>
+    <%= if @feedback do %>
+      <div class="custom-border p-2 text-pink-500 mt-2 w-max">
+        👾 Something went wrong: {@feedback} 👾
+      </div>
+    <% end %>
   </div>
 </div>

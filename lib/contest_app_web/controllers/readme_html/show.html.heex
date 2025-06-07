@@ -1,74 +1,171 @@
 <div class="flex justify-around w-100 h-100">
   <div class="bg-black bg-opacity-50 md:w-2/3 custom-border p-2">
-    <h1 class="text-xl text-customLightBlue">Glad you made it here!</h1>
+    <h1 class="text-xl text-customLightBlue">Glad you made it here.</h1>
 
     <div class="text-md text-customLightBlue mb-4 mt-2">
-      As you probably know, readme's and documentation are a developer's best friend.
+      As you probably know, readme’s and documentation are a developer’s best friend.
     </div>
 
-    <h2 class="text-lg text-customLightBlue">Setup Instructions</h2>
-    <ul class="list-disc pl-5 mb-4">
+    <h2 class="text-lg text-customLightBlue mt-4">🚀 What You’re Building</h2>
+    <p class="text-md text-customLightBlue mb-2">
+      Your task is to build a <strong>local Web API</strong>
+      that responds to a series of automated challenges issued by ground control (this app).
+    </p>
+    <p class="text-md text-customLightBlue mb-2">
+      The API should expose endpoints like <code>/ok</code>, <code>/transmissions</code>, and more as the mission unfolds. The contest app will interact with your API using plain HTTP over the local network.
+    </p>
+
+    <h2 class="text-lg text-customLightBlue mt-4">📚 Suggested Tutorials by Stack</h2>
+    <p class="text-md text-customLightBlue mb-2">
+      Use whichever stack you're comfortable with. Need a refresher? Here are some guides on web apis:
+    </p>
+
+    <ul class="list-disc pl-5 mb-4 text-customLightBlue text-md">
       <li class="mt-2">
-        <strong>Setting up your API</strong>
-        – You are expected to set up a Web API with endpoints that will handle the various challenges. The challenges follow the Nova Cygni storyline and your goal is to reach the final stage and get safely back to earth.
-      </li>
-      <li class="mt-2">
-        <strong>Configure the Local Network Access</strong>
-        – To ensure that the application is accessible on your local network, configure the application to start on <code>http://0.0.0.0:5029</code>. This setting allows other devices on your network to access the app through your machine's IP address at the specified port. Interested in why?
+        <strong>.NET (C# Minimal API)</strong>
+        –
         <.link
-          href="https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost"
-          class="text-customLightBlue hover:underline text-md"
+          href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-9.0&tabs=visual-studio"
+          class="text-customLightBlue underline hover:no-underline"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Click here.
+          Microsoft Minimal API Tutorial
         </.link>
       </li>
       <li class="mt-2">
-        <strong>Check Firewall Settings</strong>
-        – If the tester is having trouble connecting to you, ensure that your firewall settings allow traffic on the port used by the app (5029 by default) to prevent any connectivity issues.
+        <strong>Go (Gin Web Framework)</strong>
+        –
+        <.link
+          href="https://go.dev/doc/tutorial/web-service-gin"
+          class="text-customLightBlue underline hover:no-underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Build a REST API with Gin
+        </.link>
+      </li>
+      <li class="mt-2">
+        <strong>Rust (Axum Framework)</strong>
+        –
+        <.link
+          href="https://github.com/tokio-rs/axum/blob/main/examples/hello-world/src/main.rs"
+          class="text-customLightBlue underline hover:no-underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hello World Example (Axum)
+        </.link>
+        or check
+        <.link
+          href="https://docs.rs/axum/latest/axum/"
+          class="text-customLightBlue underline hover:no-underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Axum Docs
+        </.link>
+      </li>
+      <li class="mt-2">
+        <strong>Elixir (Phoenix Framework)</strong>
+        –
+        <.link
+          href="https://blog.logrocket.com/build-rest-api-elixir-phoenix/"
+          class="text-customLightBlue underline hover:no-underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Building a REST API with Elixir and Phoenix
+        </.link>
+      </li>
+      <li class="mt-2">
+        <strong>JavaScript (Express.js)</strong>
+        –
+        <.link
+          href="https://expressjs.com/en/starter/hello-world.html"
+          class="text-customLightBlue hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Express.js Hello World Guide
+        </.link>
       </li>
     </ul>
 
-    <h2 class="text-lg text-customLightBlue">Random hints and tips</h2>
-    <p class="text-md text-customLightBlue mb-2">
-      Here are some tips and tricks to help you on your way back to earth:
+    <h2 class="text-lg text-customLightBlue">🛠 Setup Instructions</h2>
+
+    <h3 class="text-md text-customLightBlue mt-4 font-bold">1. Build and Run Your API</h3>
+    <p class="text-md text-customLightBlue mb-4">
+      Your Web API should respond to specific endpoints. When your app is running, the contest server will call these endpoints and track your progress.
     </p>
 
-    <ul class="list-disc pl-5 mb-4">
+    <h3 class="text-md text-customLightBlue mt-4 font-bold">
+      2. Configure the Local Network Access
+    </h3>
+    <p class="text-md text-customLightBlue mb-4">
+      To allow the contest system to access your app, bind it to <code>http://0.0.0.0:5029</code>. This exposes your server to other devices on your local network.
+      Curious why <code>0.0.0.0</code>
+      matters?
+      <.link
+        href="https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost"
+        class="text-customLightBlue underline hover:no-underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Read this explanation.
+      </.link>
+    </p>
+
+    <h3 class="text-md text-customLightBlue mt-4 font-bold">3. Check Firewall Settings</h3>
+    <p class="text-md text-customLightBlue mb-4">
+      Ensure your firewall allows incoming traffic on port <code>5029</code>. If it's blocked, the system won't be able to test your endpoints.
+    </p>
+
+    <h2 class="text-lg text-customLightBlue mt-6">🧠 Mission Briefing & Tips</h2>
+
+    <ul class="list-disc pl-5 mb-4 text-md text-customLightBlue">
       <li class="mt-2">
         <strong>The Rules</strong>
-        – The winner is the one who either reaches the goal first, or the one with the highest level reached when the time is up. If there are more than one contestant on the same level, the one who reached it first ranks higher.
+        – Win by reaching the final stage first, or by having the highest completed challenge when the timer expires. In case of ties, fastest timestamp wins.
       </li>
       <li class="mt-2">
         <strong>The Testing Process</strong>
-        – The tester will be running the series of challenges continuously, so if you shut down or reset your application, your Command Central data will be reset to test one, but don’t worry — your highscore will never downgrade. If you want to keep the status on the Command Central screen while you work on the next challenge, just keep your app running.
+        – The system continuously pings your endpoints. If your app resets or crashes, you’ll return to test one — but don’t worry, your leaderboard score is persistent.
       </li>
       <li class="mt-2">
-        <strong>Use Developer Tools</strong>
-        – Utilize the browser’s developer tools and your IDE to monitor network requests, view console logs, and debug issues as you interact with the application.
+        <strong>Command Central</strong>
+        – Your main screen during the contest. It shows your current test, results, and status.
       </li>
       <li class="mt-2">
-        <strong>The Command Central Page</strong>
-        – This is where the action happens. Here you get instructions and results for each challenge.
-      </li>
-      <li class="mt-2">
-        <strong>The Leaderboard and Participants Pages</strong>
-        – Keep an eye on these pages to track your progress and compare your performance against others.
+        <strong>Leaderboard</strong>
+        – See how you're performing compared to other participants in real time.
       </li>
       <li class="mt-2">
         <strong>Transmissions</strong>
-        – You will be working with some sort of object called Transmission; `Id` (int), `SignalCode` (string), `Message` (string). You may find it useful to treat it as one — an object, that is. You may also find it useful, or even necessary, to add some more properties to it at some point.
+        – A recurring data object in the test scenarios. It includes <code>id</code>
+        (int), <code>signal_code</code>
+        (string), and <code>message</code>
+        (string). Treat it like an object, DTO, class, struct, record, or map — whatever floats your boat (or ship, in this case).
       </li>
       <li class="mt-2">
         <strong>The Setup Process</strong>
-        – If you are using .NET, the file to set the <code>applicationUrl</code>
-        is <code>launchSettings.json</code>.
+        – Make sure your app is bound to an address that other devices on your local network can reach. Avoid using <code>localhost</code>, as it only binds to your own machine. Instead, use something like <code>0.0.0.0</code>, <code>127.0.0.1</code>, or your machine’s local IP. Check your framework’s documentation on how to configure host and port binding.
+      </li>
+
+      <li class="mt-2">
+        <strong>Use Dev Tools</strong>
+        – Your IDE, network monitor, and console logs will help you debug and observe traffic.
       </li>
     </ul>
 
-    <p class="text-xl text-customLightBlue">
-      Good luck on your journey back home!
-    </p>
+    <h2 class="text-lg text-customLightBlue mt-6">🛡️ Having Trouble?</h2>
+    <ul class="list-disc pl-5 mb-4 text-customLightBlue text-md">
+      <li>Is your app bound to <code>http://0.0.0.0</code>? Not <code>localhost</code>?</li>
+      <li>Is your firewall blocking port <code>5029</code>? Open it up.</li>
+      <li>Is your API running?</li>
+      <li>
+        Still stuck? Don’t be shy — ask a fellow participant or reach out to a contest organizer.
+      </li>
+    </ul>
   </div>
 </div>

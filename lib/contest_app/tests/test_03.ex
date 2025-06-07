@@ -16,10 +16,11 @@ defmodule ContestApp.Tests.Test03 do
   @impl true
   def description do
     """
-    Having established a fragile connection to earth, from the next prompt it seems that whoever is trying to
-    communicate with you wants you to be able to handle the posting of a request. The request will hold something
-    they refer to a Transmission, something that holds an id(int), signal_code(string) and message(string).
-    You are to respond with a 201 Created status code and the posted entry.
+    The link to Earth stabilizes. A message comes through—structured and deliberate.
+
+    You're expected to receive a Transmission: an object with an `id` (integer), a `signal_code` (string), and a `message` (string). Set up a `POST /transmissions` endpoint that accepts this payload and echoes it back exactly as received, responding with a `201 Created` status.
+
+    Communication is now two-way. Don’t break the loop.
     """
   end
 
@@ -27,6 +28,16 @@ defmodule ContestApp.Tests.Test03 do
   def expected_result, do: "201 OK with the transmission that was posted."
 
   @impl true
+  @spec run_test(binary(), any()) ::
+          {:error, <<_::64, _::_*8>>}
+          | {:ok,
+             %{
+               is_success: true,
+               level: 3,
+               message: <<_::216>>,
+               name: <<_::104>>,
+               participant_id: any()
+             }}
   def run_test(api_url, participant_id) do
     transmission = %{
       "id" => 1,
