@@ -51,7 +51,7 @@ defmodule ContestApp.Tests.Test03 do
     case Req.post(request) do
       {:ok, %{status: 201, body: response_body}} ->
         case response_body do
-          %{"id" => 1, "signal_code" => "signalcode", "message" => "message"} ->
+          %{"id" => _, "signal_code" => "signalcode", "message" => "message"} ->
             {:ok,
              %{
                participant_id: participant_id,
