@@ -70,6 +70,20 @@ defmodule ContestApp.ParticipantGenServer do
     fresh_state = %{state | passed_tests: []}
 
     Enum.reduce_while(tests, fresh_state, fn test_module, acc_state ->
+      updated_for_next = %{
+        acc_state
+        | next_test: %{
+            name: test_module.name(),
+            level: test_module.level(),
+            description: test_module.description(),
+            expected_result: test_module.expected_result(),
+            endpoint: test_module.endpoint(),
+            method: test_module.http_method()
+          }
+      }
+
+      broadcast(updated_for_next)
+
       case test_module.run_test(acc_state.participant.api_url, acc_state.participant.id) do
         {:ok, result} ->
           IO.puts("""

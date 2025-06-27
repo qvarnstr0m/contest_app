@@ -66,7 +66,7 @@ defmodule Router do
   scope "/", SamplePhoenix do
     pipe_through(:api)
 
-    get("/ok", SampleController, :ok)
+    # get("/ok", SampleController, :ok)
 
     # get("/transmissions", SampleController, :get_transmission)
 
